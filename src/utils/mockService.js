@@ -1,7 +1,4 @@
-
-
-export const getMockCards = () => {
-    return [
+const mockProducts = [
         {
         id: 1,
         title: "Смарт‑часы X100",
@@ -33,5 +30,12 @@ export const getMockCards = () => {
         image: "https://i256.63pokupki.ru/item/x256/a72d014be5862eae79446798bf046ba2imw26kzklnwineg2.jpg",
         description: "Водонепроницаемые, GPS, 7‑дневный аккумулятор"
         },
-    ]
-}
+];
+
+export const getProducts = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(mockProducts);
+        }, 600);
+    });
+};

@@ -4,19 +4,23 @@ import classes from './modal.module.css';
 
 export const Modal = ({ isOpen, onClose, children }) => {
     useEffect(() => {
-        const handleEsc = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
 
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-            window.addEventListener('keydown', handleEsc);
-        }
+    const handleEsc = (e) => {
+        if (e.key === 'Escape') onClose();
+    };
 
-        return () => {
-            document.body.style.overflow = 'unset';
-            window.removeEventListener('keydown', handleEsc);
-        };
+    const originalOverflow = document.body.style.overflow;
+
+    if (isOpen) {
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+        document.body.style.overflow = originalOverflow;
+        document.removeEventListener('keydown', handleEsc);
+    };
+
     }, [isOpen, onClose]);
 
     if (!isOpen) return null;

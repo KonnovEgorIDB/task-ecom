@@ -1,29 +1,40 @@
 import { useEffect, useState } from 'react';
 import './App.css'
-import { getMockCards } from './utils/mockService';
+import { getProducts } from './utils/mockService';
 import { Card } from './components/card/card';
 
 function App() {
+  const [allCards, setAllCards] = useState([]);
   const [actualCards, setActualCards] = useState([]);
-  useEffect(() => {
-    const fullCards = getMockCards();
+  const [search, setSearch] = useState('');
+  
 
-    setActualCards(fullCards);
-  },[])
+  useEffect(() => {
+    const loadCards = async () => {
+      const cards = await getProducts();
+
+      setAllCards(cards);
+      setActualCards(cards);
+    };
+
+    loadCards();
+    }, []);
 
   const changeInput = (event) => {
-    const fullCards = getMockCards();
-
-    setActualCards(fullCards.filter(card => card.title.toLowerCase().includes(event.target.value.toLowerCase())));
+    const value = event.target.value.toLowerCase();
+    setSearch(value);
+    setActualCards(allCards.filter(card => card.title.toLowerCase().includes(value)));
   }
 
 
   return (
     <>
-      <input type='text' onChange={changeInput}/>
-      {
-        actualCards.map((card)=> <Card card={card} key={card.id} /> )
-      }
+      <input type='text' onChange={changeInput} value={search}/>
+      <div className='catalog'>
+        {
+          actualCards.map((card)=> <Card card={card} key={card.id} /> )
+        }
+      </div>
     </>
   )
 }

@@ -1,0 +1,26 @@
+.pageContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pageTitle {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #007bff;
+}

@@ -1,8 +1,0 @@
-.catalog {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: left;
-  align-items: center;
-  margin: 20px;
-}
